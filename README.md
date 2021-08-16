@@ -10,6 +10,10 @@ Please only spend 1 to 2 hours at most.
 
 Please fork this GitHub repository as a private repository.
 
+## How to provide your answers
+
+Providing unit/feature tests as your answer is preferred, otherwise you will need to find another way to demonstrate that your solution works.
+
 ## Scenario 1
 
 wi-Q is integrating with a fictitious company called 'Great Food Ltd'. 'Great Food Ltd' provide menu and item data from a REST API. Your job is to write some code to consume their API and parse the response into a readable format.
