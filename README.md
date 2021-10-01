@@ -6,10 +6,6 @@ It is not necessary to create a functioning REST API for this task, we are simpl
 
 Please only spend 1 to 2 hours at most.
 
-## Getting started
-
-Please fork this GitHub repository as a private repository.
-
 ## How to provide your answers
 
 Providing unit/feature tests as your answer is preferred, otherwise you will need to find another way to demonstrate that your solution works.
@@ -84,4 +80,4 @@ Using any of the API endpoints from Scenario 1 and the new method detailed below
 
 ## When you're done
 
-Please add both sam@wi-q.com and matt@wi-q.com as collaborators to your GitHub repository.
+Please zip up your solution and email it to both sam@wi-q.com and matt@wi-q.com.
