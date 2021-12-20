@@ -1,6 +1,6 @@
 # wi-Q Backend Developer Test
 
-The purpose of this test is to demonstrate your understanding of REST APIs and how you would orchestrate their consumption within an application. Please create a PHP application using whichever tools you feel would be the most suitable to get the job done, we would prefer no framework, but if you have a good reason to use something then feel free. We would encourage the use of other packages that you deem useful.
+The purpose of this test is to demonstrate your understanding of REST APIs and how you would orchestrate their consumption within an application. Please create the basics of a library using whichever tools you feel would be the most suitable to get the job done. We would prefer no specific framework, but if you have a good reason to use something then feel free. We would also encourage the use of other packages that you deem useful.
 
 It is not necessary to create a functioning REST API for this task, we are simply trying to see how you would go about connecting and consuming information from one.
 
