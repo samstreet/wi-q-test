@@ -4,7 +4,7 @@ The purpose of this test is to demonstrate your understanding of REST APIs and h
 
 Your library should provide the functionality to interact with a REST API, allowing you to perform the operations listed below (Scenario 1 & Scenario 2). It is not necessary to create a functioning REST API for this task, we are simply trying to see how you would go about connecting and consuming information from one. It is important that your library would work in a real world scenario, if required.
 
-Please only spend 1 to 2 hours at most.
+Please only spend 1 to 2 hours at most. AI development tools are permitted, but please disclose if you have used them. The next interview stage will contain a discussion of your code including how it works and the design decisions you made.
 
 ## How to provide your answer
 
