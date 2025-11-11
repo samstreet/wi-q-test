@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: tail -f /dev/null  # Keep container running
+
+  test:
+    build: .
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: vendor/bin/phpunit

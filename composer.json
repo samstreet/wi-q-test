@@ -1,0 +1,34 @@
+{
+    "name": "wi-q/rest-api-client-library",
+    "description": "A 100% agnostic REST API client library with Great Food Ltd API implementation example",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.4",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ApiClient\\": "src/ApiClient/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Fixtures\\": "tests/Fixtures/",
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-html coverage"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
