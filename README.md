@@ -90,3 +90,74 @@ Proof that the API request has been successful.
 ## When you're done
 
 Please zip up your solution and email it to both sam@wi-q.com and matt@wi-q.com.
+
+---
+
+## Development Setup
+
+### Prerequisites
+- Docker and Docker Compose
+
+### Installation
+
+```bash
+# Build Docker containers
+docker-compose build
+
+# Install dependencies
+docker-compose run app composer install
+```
+
+### Code Quality Tools
+
+This project uses strict code quality tools to ensure high standards:
+
+#### PHPStan (Level 9)
+Static analysis tool to catch bugs and type errors:
+
+```bash
+# Run PHPStan analysis
+docker-compose run app composer phpstan
+
+# Generate baseline (if needed)
+docker-compose run app composer phpstan-baseline
+```
+
+#### PHP CS Fixer
+Automatic code style fixer following PSR-12 and PHP 8.4 standards:
+
+```bash
+# Check code style (dry-run)
+docker-compose run app composer cs-check
+
+# Fix code style automatically
+docker-compose run app composer cs-fix
+```
+
+#### Running Tests
+
+```bash
+# Run all tests
+docker-compose run test
+
+# Run tests with coverage
+docker-compose run app composer test-coverage
+```
+
+#### All Quality Checks
+
+Run all quality checks at once (code style, static analysis, tests):
+
+```bash
+docker-compose run app composer quality
+```
+
+### Project Structure
+
+```
+src/ApiClient/          # Generic REST API client library (100% agnostic)
+tests/Fixtures/         # Great Food Ltd API implementation example
+tests/Unit/             # Unit tests for library components
+tests/Integration/      # Integration tests for scenarios
+examples/               # Demonstration scripts
+```

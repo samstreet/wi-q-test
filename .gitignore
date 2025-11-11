@@ -6,6 +6,12 @@ composer.lock
 .phpunit.cache/
 coverage/
 
+# PHPStan
+phpstan-baseline.neon
+
+# PHP CS Fixer
+.php-cs-fixer.cache
+
 # IDE
 .idea/
 .vscode/

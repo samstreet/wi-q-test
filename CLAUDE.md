@@ -161,24 +161,35 @@ enum HttpMethod: string
 
 ## Docker Commands
 
+**IMPORTANT**: All Composer commands MUST be run inside the Docker container using `docker compose run --rm app composer <command>`. Never run Composer commands directly on the host machine.
+
 ### Development
 ```bash
 # Build and start containers
-docker-compose up -d
+docker compose up -d
 
 # Run tests
-docker-compose run test
+docker compose run --rm app composer test
+
+# Run PHPStan
+docker compose run --rm app composer phpstan
+
+# Run PHP CS Fixer
+docker compose run --rm app composer cs-fix
+
+# Run all quality checks
+docker compose run --rm app sh -c "composer cs-fix && composer phpstan && composer test"
 
 # Enter app container
 docker exec -it <container_name> sh
 
 # Run scenario examples
-docker-compose run app php examples/scenario1.php
-docker-compose run app php examples/scenario2.php
+docker compose run --rm app php examples/scenario1.php
+docker compose run --rm app php examples/scenario2.php
 
-# Run Composer commands
-docker-compose run app composer install
-docker-compose run app composer test
+# Install/update dependencies
+docker compose run --rm app composer install
+docker compose run --rm app composer update
 ```
 
 ## Testing Approach

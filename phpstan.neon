@@ -1,0 +1,38 @@
+includes:
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+
+parameters:
+    level: 9
+    paths:
+        - src
+        - tests
+
+    # Exclude generated or cache files
+    excludePaths:
+        - tests/coverage (?)
+        - vendor
+
+    # Check for missing type hints
+    checkMissingCallableSignature: true
+
+    # Report all undefined variables
+    reportUnmatchedIgnoredErrors: false
+
+    # Additional checks
+    checkExplicitMixedMissingReturn: true
+    checkFunctionNameCase: true
+    checkInternalClassCaseSensitivity: true
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true
+    checkUninitializedProperties: true
+
+    # PHPUnit specific
+    treatPhpDocTypesAsCertain: false
+
+    # Ignore specific errors in tests
+    ignoreErrors:
+        # PHPUnit assertions are called dynamically, which is expected
+        - '#Dynamic call to static method PHPUnit\\Framework\\Assert::#'
+        # json_encode returns string|false, which is fine in tests
+        - '#Parameter \#3 \$body of class GuzzleHttp\\Psr7\\Response constructor expects .*, string\|false given#'
+        # Test mock connectors intentionally don't call parent constructor to inject mock handler
+        - '#AnonymousClass.*::__construct\(\) does not call parent constructor from ApiClient\\Client\\Connector#'
