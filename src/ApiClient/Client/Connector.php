@@ -102,9 +102,11 @@ abstract class Connector
 
             // Add body if present
             $body = $request->body();
-            if (count($body) > 0) {
+            if ($body !== []) {
                 // Set Content-Type to application/json for requests with body
-                if (!isset($options['headers']['Content-Type'])) {
+                // Check case-insensitively per RFC 2616
+                $headerKeys = array_change_key_case($options['headers'], CASE_LOWER);
+                if (!isset($headerKeys['content-type'])) {
                     $options['headers']['Content-Type'] = 'application/json';
                 }
                 $options['json'] = $body;
@@ -125,7 +127,6 @@ abstract class Connector
                 return [];
             }
 
-            /** @var array<string, mixed> $decoded */
             $decoded = json_decode($responseBody, true);
 
             if (json_last_error() !== JSON_ERROR_NONE) {
@@ -134,10 +135,13 @@ abstract class Connector
                 );
             }
 
-            if (!is_array($decoded)) {
-                return [];
+            // Handle non-associative arrays and scalar values
+            if (!is_array($decoded) || array_is_list($decoded)) {
+                /** @var array<string, mixed> */
+                return ['data' => $decoded];
             }
 
+            /** @var array<string, mixed> $decoded */
             return $decoded;
 
         } catch (RequestException $e) {

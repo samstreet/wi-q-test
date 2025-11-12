@@ -359,6 +359,133 @@ final class ConnectorTest extends TestCase
         }
     }
 
+    public function test_content_type_header_is_case_insensitive(): void
+    {
+        $capturedHeaders = [];
+
+        $mock = new MockHandler([
+            new Response(200, [], json_encode(['success' => true])),
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+        $handlerStack->push(function (callable $handler) use (&$capturedHeaders) {
+            return function ($request, array $options) use ($handler, &$capturedHeaders) {
+                $capturedHeaders = $request->getHeaders();
+
+                return $handler($request, $options);
+            };
+        });
+
+        $connector = $this->createMockConnector($handlerStack);
+
+        $request = new class () extends Request {
+            public function resolveEndpoint(): string
+            {
+                return '/test';
+            }
+
+            public function method(): string
+            {
+                return HttpMethod::POST->value;
+            }
+
+            public function headers(): array
+            {
+                return ['content-type' => 'application/xml'];
+            }
+
+            public function body(): array
+            {
+                return ['test' => 'data'];
+            }
+        };
+
+        $connector->send($request);
+
+        // Should NOT have duplicate Content-Type headers
+        $this->assertCount(1, $capturedHeaders['content-type'] ?? $capturedHeaders['Content-Type'] ?? []);
+        // Should use the request's content-type, not auto-added JSON
+        $this->assertStringContainsString('xml', implode('', $capturedHeaders['content-type'] ?? $capturedHeaders['Content-Type'] ?? []));
+    }
+
+    public function test_handles_json_boolean_response(): void
+    {
+        $mock = new MockHandler([
+            new Response(200, [], json_encode(true)),
+        ]);
+
+        $connector = $this->createMockConnector(HandlerStack::create($mock));
+
+        $request = new class () extends Request {
+            public function resolveEndpoint(): string
+            {
+                return '/test';
+            }
+
+            public function method(): string
+            {
+                return HttpMethod::GET->value;
+            }
+        };
+
+        $result = $connector->send($request);
+
+        $this->assertArrayHasKey('data', $result);
+        $this->assertTrue($result['data']);
+    }
+
+    public function test_handles_json_string_response(): void
+    {
+        $mock = new MockHandler([
+            new Response(200, [], json_encode('success')),
+        ]);
+
+        $connector = $this->createMockConnector(HandlerStack::create($mock));
+
+        $request = new class () extends Request {
+            public function resolveEndpoint(): string
+            {
+                return '/test';
+            }
+
+            public function method(): string
+            {
+                return HttpMethod::GET->value;
+            }
+        };
+
+        $result = $connector->send($request);
+
+        $this->assertArrayHasKey('data', $result);
+        $this->assertSame('success', $result['data']);
+    }
+
+    public function test_handles_json_numeric_array_response(): void
+    {
+        $mock = new MockHandler([
+            new Response(200, [], json_encode([1, 2, 3])),
+        ]);
+
+        $connector = $this->createMockConnector(HandlerStack::create($mock));
+
+        $request = new class () extends Request {
+            public function resolveEndpoint(): string
+            {
+                return '/test';
+            }
+
+            public function method(): string
+            {
+                return HttpMethod::GET->value;
+            }
+        };
+
+        $result = $connector->send($request);
+
+        $this->assertArrayHasKey('data', $result);
+        $this->assertSame([1, 2, 3], $result['data']);
+    }
+
     /**
      * Create a mock connector with a custom Guzzle handler.
      */
