@@ -38,7 +38,7 @@ The library must:
   - `client_id`: 1337
   - `client_secret`: 4j3g4gj304gj3
   - `grant_type`: client_credentials
-- **Response**: Bearer token with expiration (see `responses/token.json`)
+- **Response**: Bearer token with expiration (see `tests/Fixtures/stubs/token.json`)
 
 ### Available Endpoints
 - `GET /menus` - List all menus (requires Bearer token)
@@ -47,10 +47,10 @@ The library must:
 
 ## Sample Data
 
-Sample API responses are provided in the `responses/` directory:
-- `responses/token.json` - Sample authentication response
-- `responses/menus.json` - Sample menus list (menu ID 3 is "Takeaway")
-- `responses/menu-products.json` - Sample products for the Takeaway menu
+Sample API response stubs are provided in the `tests/Fixtures/stubs/` directory:
+- `tests/Fixtures/stubs/token.json` - Sample authentication response
+- `tests/Fixtures/stubs/menus.json` - Sample menus list (menu ID 3 is "Takeaway")
+- `tests/Fixtures/stubs/menu-products.json` - Sample products for the Takeaway menu
 
 ## Technical Stack
 
@@ -205,7 +205,7 @@ Test the generic library components:
 Validate Great Food implementation and tech test requirements:
 - `Scenario1Test.php` - Validates Scenario 1 (fetch and display Takeaway products)
 - `Scenario2Test.php` - Validates Scenario 2 (update product name)
-- Mock HTTP responses using sample JSON files from `responses/`
+- Mock HTTP responses using sample JSON stub files from `tests/Fixtures/stubs/`
 - Test GreatFoodConnector, Request classes, MenuService, Models together
 - Verify authentication flow with OAuth2
 - Test data transformation (API responses → Models)

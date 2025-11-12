@@ -43,7 +43,7 @@ The available endpoints for the 'Great Food Ltd' API are as follows:
 > | -------------| --------------------------------- |
 > | Content-Type | application/x-www-form-urlencoded |
 > #### Response
-> This has been provided in `responses/token.json`
+> This has been provided in `tests/Fixtures/stubs/token.json`
 
 > ### /menus
 > #### Request Type
@@ -54,7 +54,7 @@ The available endpoints for the 'Great Food Ltd' API are as follows:
 > | ------------- | -------------- |
 > | Authorization | Bearer {token} |
 > #### Response
-> This has been provided in `responses/menus.json`
+> This has been provided in `tests/Fixtures/stubs/menus.json`
 
 > ### /menu/{menu_id}/products
 > #### Request Type
@@ -65,7 +65,7 @@ The available endpoints for the 'Great Food Ltd' API are as follows:
 > | ------------- | -------------- |
 > | Authorization | Bearer {token} |
 > #### Response
-> The list of products for the `Takeaway` menu has been provided in `responses/menu-products.json`
+> The list of products for the `Takeaway` menu has been provided in `tests/Fixtures/stubs/menu-products.json`
 
 ## Scenario 2
 

@@ -47,7 +47,7 @@ This is a technical assessment for a PHP Backend Developer position at wi-Q. The
   - `client_secret`: 4j3g4gj304gj3
   - `grant_type`: client_credentials
 
-**Response Structure** (from `responses/token.json`):
+**Response Structure** (from `tests/Fixtures/stubs/token.json`):
 ```json
 {
     "access_token": "33w4yh344go3u4h34yh93n4h3un4g34g",
@@ -79,7 +79,7 @@ This is a technical assessment for a PHP Backend Developer position at wi-Q. The
 **GET /menus**
 - **Method**: GET
 - **Headers**: `Authorization: Bearer {token}`
-- **Response Structure** (from `responses/menus.json`):
+- **Response Structure** (from `tests/Fixtures/stubs/menus.json`):
 ```json
 {
     "data": [
@@ -98,7 +98,7 @@ This is a technical assessment for a PHP Backend Developer position at wi-Q. The
 **GET /menu/{menu_id}/products**
 - **Method**: GET
 - **Headers**: `Authorization: Bearer {token}`
-- **Response Structure** (from `responses/menu-products.json`):
+- **Response Structure** (from `tests/Fixtures/stubs/menu-products.json`):
 ```json
 {
     "data": [
@@ -245,11 +245,11 @@ Use Composer for:
 
 ## Sample Data Provided
 
-The following sample responses are provided in the `responses/` directory:
+The following sample response stubs are provided in the `tests/Fixtures/stubs/` directory:
 
-1. **responses/token.json**: OAuth2 token response
-2. **responses/menus.json**: List of available menus
-3. **responses/menu-products.json**: Products for the Takeaway menu
+1. **tests/Fixtures/stubs/token.json**: OAuth2 token response
+2. **tests/Fixtures/stubs/menus.json**: List of available menus
+3. **tests/Fixtures/stubs/menu-products.json**: Products for the Takeaway menu
 
 These files can be used for:
 - Understanding expected API response structures

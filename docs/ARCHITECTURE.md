@@ -714,7 +714,7 @@ wi-q-test/
 │   ├── scenario1.php                   # Demonstrate Scenario 1
 │   └── scenario2.php                   # Demonstrate Scenario 2
 │
-├── responses/                          # Sample API responses
+├── tests/Fixtures/stubs/              # Sample API response stubs
 │   ├── token.json
 │   ├── menus.json
 │   └── menu-products.json

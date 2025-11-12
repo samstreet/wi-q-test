@@ -422,7 +422,7 @@ class GetUsersRequest extends ApiClient\Requests\Request
 
 1. **Scenario Test 1** (`tests/Integration/Scenario1Test.php`)
    - Test that verifies Scenario 1 requirements
-   - Mock HTTP responses using `responses/menus.json` and `responses/menu-products.json`
+   - Mock HTTP responses using `tests/Fixtures/stubs/menus.json` and `tests/Fixtures/stubs/menu-products.json`
    - Assert correct products are fetched and formatted
    - Validates the "Takeaway" menu products display correctly
 
