@@ -34,5 +34,3 @@ parameters:
         - '#Dynamic call to static method PHPUnit\\Framework\\Assert::#'
         # json_encode returns string|false, which is fine in tests
         - '#Parameter \#3 \$body of class GuzzleHttp\\Psr7\\Response constructor expects .*, string\|false given#'
-        # Test mock connectors intentionally don't call parent constructor to inject mock handler
-        - '#AnonymousClass.*::__construct\(\) does not call parent constructor from ApiClient\\Client\\Connector#'

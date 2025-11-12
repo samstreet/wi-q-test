@@ -11,6 +11,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\HttpFactory;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
@@ -491,16 +492,17 @@ final class ConnectorTest extends TestCase
      */
     private function createMockConnector(HandlerStack $handlerStack): Connector
     {
-        return new class ($handlerStack) extends Connector {
-            private HandlerStack $handlerStack;
+        // Create Guzzle client with mock handler
+        $guzzleClient = new Client(['handler' => $handlerStack]);
 
-            public function __construct(HandlerStack $handlerStack)
-            {
-                $this->handlerStack = $handlerStack;
-                // Don't call parent constructor, we'll set httpClient manually
-                $this->httpClient = new Client(['handler' => $this->handlerStack]);
-            }
+        // Create PSR-17 factories
+        $httpFactory = new HttpFactory();
 
+        return new class (
+            $guzzleClient,
+            $httpFactory,
+            $httpFactory
+        ) extends Connector {
             protected function resolveBaseUrl(): string
             {
                 return 'https://api.test.com';
